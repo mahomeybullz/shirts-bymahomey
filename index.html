@@ -1,94 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mahomey Made This — Shirt Shop</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahomé | Wear your mood</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FFF9F9;
+            color: #333;
+        }
+        .heading-font {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .active-category {
+            background-color: #F8C8DC;
+        }
+    </style>
 </head>
-<body class="bg-pink-50 font-sans text-gray-800">
-
-  <header class="text-center py-10">
-    <h1 class="text-4xl font-bold text-gray-800">Mahomey Made This</h1>
-    <p class="text-md italic text-gray-600 mt-2">Baddie-core & Chill Tees for Every Mood 😌🔥</p>
-  </header>
-
-  <div class="px-6 mb-6 flex justify-center space-x-4">
-    <button onclick="filterShirts('all')" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded">All</button>
-    <button onclick="filterShirts('baddie')" class="px-4 py-2 bg-red-200 hover:bg-red-300 rounded">The Loud Ones 🔥</button>
-    <button onclick="filterShirts('plain')" class="px-4 py-2 bg-green-200 hover:bg-green-300 rounded">The Chill Ones 🌱</button>
-  </div>
-
-  <div id="shirtGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 pb-10">
-    <!-- Baddie Shirts -->
-    <div class="shirt-card baddie bg-white shadow rounded-lg p-4">
-      <img src="https://via.placeholder.com/300x300.png?text=Too+Expensive+to+Argue" class="w-full mb-4 rounded" />
-      <h2 class="text-xl font-bold">"Too Expensive to Argue"</h2>
-      <p class="text-pink-700 mb-2">₱399 — Baddie-core essential</p>
-      <a href="#order" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Buy Now</a>
-    </div>
-
-    <div class="shirt-card baddie bg-white shadow rounded-lg p-4">
-      <img src="https://via.placeholder.com/300x300.png?text=I+Don't+Chase" class="w-full mb-4 rounded" />
-      <h2 class="text-xl font-bold">"i don't chase, i attract."</h2>
-      <p class="text-pink-700 mb-2">₱420 — Your fave's fave line</p>
-      <a href="#order" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Buy Now</a>
-    </div>
-
-    <!-- Plain Shirts -->
-    <div class="shirt-card plain bg-white shadow rounded-lg p-4">
-      <img src="https://via.placeholder.com/300x300.png?text=inhale+exhale" class="w-full mb-4 rounded" />
-      <h2 class="text-xl font-bold">"inhale / exhale"</h2>
-      <p class="text-pink-700 mb-2">₱379 — Calm but cute</p>
-      <a href="#order" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Buy Now</a>
-    </div>
-
-    <div class="shirt-card plain bg-white shadow rounded-lg p-4">
-      <img src="https://via.placeholder.com/300x300.png?text=everyday+is+mine" class="w-full mb-4 rounded" />
-      <h2 class="text-xl font-bold">"everyday is mine."</h2>
-      <p class="text-pink-700 mb-2">₱399 — Minimalist queen energy</p>
-      <a href="#order" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Buy Now</a>
-    </div>
-  </div>
-
-  <!-- Order Form -->
-  <div id="order" class="bg-white max-w-xl mx-auto shadow-lg rounded-lg p-6 my-10">
-    <h2 class="text-2xl font-bold text-pink-800 mb-4">Order Form</h2>
-    <form name="orderForm">
-      <label class="block mb-2">Name</label>
-      <input type="text" class="w-full mb-4 p-2 border rounded" required />
-
-      <label class="block mb-2">Email or GCash Number</label>
-      <input type="text" class="w-full mb-4 p-2 border rounded" required />
-
-      <label class="block mb-2">Shirt Name</label>
-      <input type="text" class="w-full mb-4 p-2 border rounded" required />
-
-      <label class="block mb-2">Size (S / M / L / XL)</label>
-      <input type="text" class="w-full mb-4 p-2 border rounded" required />
-
-      <label class="block mb-2">Quantity</label>
-      <input type="number" class="w-full mb-4 p-2 border rounded" min="1" required />
-
-      <button type="submit" class="bg-pink-500 text-white px-6 py-2 rounded hover:bg-pink-600">Submit Order</button>
-    </form>
-  </div>
-
-  <footer class="text-center text-xs text-gray-600 pb-6">
-    &copy; 2025 Mahomey Bulwayan LD — All rights reserved.
-  </footer>
-
-<script>
-function filterShirts(type) {
-  const cards = document.querySelectorAll(".shirt-card");
-  cards.forEach(card => {
-    if (type === "all" || card.classList.contains(type)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-}
-</script>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-pink-50 py-6 px-4 shadow-sm">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left mb-4 md:mb-0">
+                <h1 class="heading-font text-3xl text-pink-600">Mahomé</h1>
+                <p class="text-pink-400 italic">Wear your mood. Loud, soft, or somewhere in between.</p>
+            </div>
+            <nav class="flex space-x-4">
+                <a href="#products" class="text-pink-600 hover:text-pink-800">Shop</a>
+                <a href="#about" class="text-pink-600 hover:text-pink-800">About</a>
+                <a href="#contact" class="text-pink-600 hover:text-pink-800">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-pink-50 to-pink-100 py-16 px-4">
+        <div class="container mx-auto text-center">
+            <h2 class="heading-font text-4xl md:text-5xl text-pink-700 mb-4">Express Yourself</h2>
+            <p class="text-xl text-pink-600 max-w-2xl mx-auto">Clothing that speaks your truth, in every shade of emotion.</p>
+        </div>
+    </section>
+    <!-- Category Filters -->
+    <section id="products" class="py-8 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterProducts('all')" class="active-category px-4 py-2 rounded-full bg-pink-100 text-pink-700 hover:bg-pink-200 transition">All Items</button>
+                <button onclick="filterProducts('baddie')" class="px-4 py-2 rounded-full bg-pink-100 text-pink-700 hover:bg-pink-200 transition">🔥 Baddie Shirts</button>
+                <button onclick="filterProducts('minimalist')" class="px-4 py-2 rounded-full bg-pink-100 text-pink-700 hover:bg-pink-200 transition">🌱 Minimalist</button>
+                <button onclick="filterProducts('hoodies')" class="px-4 py-2 rounded-full bg-pink-100 text-pink-700 hover:bg-pink-200 transition">🧥 Hoodies</button>
+                <button onclick="filterProducts('totes')" class="px-4 py-2 rounded-full bg-pink-100 text-pink-700 hover:bg-pink-200 transition">👜 Tote Bags</button>
+                <button onclick="filterProducts('accessories')" class="px-4 py-2 rounded-full bg-pink-100 text-pink-700 hover:bg-pink-200 transition">🧢 Accessories</button>
+            </div>
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Products will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="bg-pink-50 py-12 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="heading-font text-3xl text-pink-700 mb-6 text-center">Our Story</h2>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <p class="mb-4">Mahomé began with a simple idea: clothing should be an extension of your personality, not just fabric on your body.</p>
+                <p>Each piece is designed to help you express your current mood, whether you're feeling bold and unapologetic or soft and introspective.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Order Form -->
+    <section id="contact" class="py-12 px-4">
+        <div class="container mx-auto max-w-2xl">
+            <h2 class="heading-font text-3xl text-pink-700 mb-6 text-center">Place Your Order</h2>
+            <form class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="mb-4">
+                    <label class="block text-pink-700 mb-2" for="name">Full Name</label>
+                    <input type="text" id="name" class="w-full px-3 py-2 border border-pink-200 rounded focus:outline-none focus:ring-2 focus:ring-pink-300">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-pink-700 mb-2" for="contact">Email or GCash Number</label>
+                    <input type="text" id="contact" class="w-full px-3 py-2 border border-pink-200 rounded focus:outline-none focus:ring-2 focus:ring-pink-300">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-pink-700 mb-2" for="product">Product Name</label>
+                    <input type="text" id="product" class="w-full px-3 py-2 border border-pink-200 rounded focus:outline-none focus:ring-2 focus:ring-pink-300">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-pink-700 mb-2" for="size">Size (if applicable)</label>
+                    <input type="text" id="size" class="w-full px-3 py-2 border border-pink-200 rounded focus:outline-none focus:ring-2 focus:ring-pink-300">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-pink-700 mb-2" for="quantity">Quantity</label>
+                    <input type="number" id="quantity" min="1" class="w-full px-3 py-2 border border-pink-200 rounded focus:outline-none focus:ring-2 focus:ring-pink-300">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-pink-700 mb-2" for="payment">Mode of Payment</label>
+                    <select id="payment" class="w-full px-3 py-2 border border-pink-200 rounded focus:outline-none focus:ring-2 focus:ring-pink-300">
+                        <option value="">Select payment method</option>
+                        <option value="gcash">GCash</option>
+                        <option value="cod">Cash on Delivery</option>
+                        <option value="pickup">Pickup</option>
+                    </select>
+                </div>
+                <button type="button" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded transition duration-300">
+                    Submit Order
+                </button>
+            </form>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-pink-800 text-pink-100 py-8 px-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Mahomé. All rights reserved.</p>
+            <p class="mt-2">Wear your mood. Loud, soft, or somewhere in between.</p>
+        </div>
+    </footer>
+    <script>
+        // Product data
+        const products = [
+            // Baddie Shirts
+            { id: 1, name: "block him for peace", price: 410, category: "baddie", image: "https://via.placeholder.com/300x300?text=block+him+for+peace" },
+            { id: 2, name: "i'm not for everyone", price: 399, category: "baddie", image: "https://via.placeholder.com/300x300?text=i'm+not+for+everyone" },
+            { id: 3, name: "i don't chase, i attract.", price: 420, category: "baddie", image: "https://via.placeholder.com/300x300?text=i+don't+chase" },
+            { id: 4, name: "too expensive to argue", price: 390, category: "baddie", image: "https://via.placeholder.com/300x300?text=too+expensive+to+argue" },
+            { id: 5, name: "she's not you, and it shows", price: 420, category: "baddie", image: "https://via.placeholder.com/300x300?text=she's+not+you" },
+            { id: 6, name: "drama queen, but make it iconic", price: 415, category: "baddie", image: "https://via.placeholder.com/300x300?text=drama+queen" },
+            { id: 7, name: "unavailable & unbothered", price: 400, category: "baddie", image: "https://via.placeholder.com/300x300?text=unavailable+unbothered" },
+            
+            // Minimalist Shirts
+            { id: 8, name: "quiet doesn't mean weak", price: 385, category: "minimalist", image: "https://via.placeholder.com/300x300?text=quiet+doesn't+mean+weak" },
+            { id: 9, name: "low effort. high impact.", price: 380, category: "minimalist", image: "https://via.placeholder.com/300x300?text=low+effort+high+impact" },
+            { id: 10, name: "inhale / exhale", price: 379, category: "minimalist", image: "https://via.placeholder.com/300x300?text=inhale+exhale" },
+            { id: 11, name: "everyday is mine.", price: 399, category: "minimalist", image: "https://via.placeholder.com/300x300?text=everyday+is+mine" },
+            { id: 12, name: "i'm trying my softest", price: 395, category: "minimalist", image: "https://via.placeholder.com/300x300?text=i'm+trying+my+softest" },
+            { id: 13, name: "soft but not fragile", price: 385, category: "minimalist", image: "https://via.placeholder.com/300x300?text=soft+but+not+fragile" },
+            { id: 14, name: "healed-ish", price: 390, category: "minimalist", image: "https://via.placeholder.com/300x300?text=healed-ish" },
+            
+            // Hoodies & Sweatshirts
+            { id: 15, name: "cry club hoodie", price: 599, category: "hoodies", image: "https://via.placeholder.com/300x300?text=cry+club+hoodie" },
+            { id: 16, name: "mentally checked out hoodie", price: 620, category: "hoodies", image: "https://via.placeholder.com/300x300?text=mentally+checked+out" },
+            { id: 17, name: "emotional damage oversized hoodie", price: 615, category: "hoodies", image: "https://via.placeholder.com/300x300?text=emotional+damage" },
+            { id: 18, name: "seen-zoned survivor sweatshirt", price: 590, category: "hoodies", image: "https://via.placeholder.com/300x300?text=seen-zoned+survivor" },
+            { id: 19, name: "offline for inner peace hoodie", price: 600, category: "hoodies", image: "https://via.placeholder.com/300x300?text=offline+for+inner+peace" },
+            
+            // Tote Bags
+            { id: 20, name: "carrying issues tote bag", price: 299, category: "totes", image: "https://via.placeholder.com/300x300?text=carrying+issues" },
+            { id: 21, name: "stuff & overthinking tote bag", price: 310, category: "totes", image: "https://via.placeholder.com/300x300?text=stuff+and+overthinking" },
+            { id: 22, name: "soft baddie tote bag", price: 310, category: "totes", image: "https://via.placeholder.com/300x300?text=soft+baddie" },
+            { id: 23, name: "books, snacks, and baggage tote", price: 320, category: "totes", image: "https://via.placeholder.com/300x300?text=books+snacks+baggage" },
+            
+            // Accessories
+            { id: 24, name: "unbothered cap", price: 199, category: "accessories", image: "https://via.placeholder.com/300x300?text=unbothered+cap" },
+            { id: 25, name: "brain loading… cap", price: 210, category: "accessories", image: "https://via.placeholder.com/300x300?text=brain+loading" },
+            { id: 26, name: "emotions sold separately keychain", price: 150, category: "accessories", image: "https://via.placeholder.com/300x300?text=emotions+sold+separately" },
+            { id: 27, name: "girl math pin badge set", price: 180, category: "accessories", image: "https://via.placeholder.com/300x300?text=girl+math+pins" }
+        ];
+        // Display all products initially
+        function displayProducts(productsToDisplay) {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            productsToDisplay.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-pink-700 mb-1">${product.name}</h3>
+                        <p class="text-pink-600 font-medium">₱${product.price}</p>
+                        <button class="mt-3 w-full bg-pink-100 hover:bg-pink-200 text-pink-700 py-2 px-4 rounded transition">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+        // Filter products by category
+        function filterProducts(category) {
+            // Update active button
+            document.querySelectorAll('.flex button').forEach(btn => {
+                btn.classList.remove('active-category');
+            });
+            event.target.classList.add('active-category');
+            
+            if (category === 'all') {
+                displayProducts(products);
+            } else {
+                const filteredProducts = products.filter(product => product.category === category);
+                displayProducts(filteredProducts);
+            }
+        }
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            displayProducts(products);
+        });
+    </script>
 </body>
 </html>
